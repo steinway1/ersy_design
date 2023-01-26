@@ -1,0 +1,95 @@
+.notepad {
+  width: 100%;
+  min-height: 60vh;
+  /* max-width: 60vw; */
+}
+
+.notepad-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.notepad__main-title {
+  font-weight: 600;
+}
+
+.notepad-header__controls-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-column-gap: 8px;
+  -moz-column-gap: 8px;
+  column-gap: 8px;
+}
+
+.notepad__control-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 50rem;
+  font-weight: 500;
+  font-size: 13px;
+  background-color: #f2f2f2;
+  border: 1px solid #f2f2f2;
+  transition: all 200ms ease;
+}
+
+.notepad__control-btn.active {
+  background-color: rgba(9, 147, 198, 0.175);
+  color: #2e6b82;
+  border: 1px solid #0995c6;
+}
+
+.notepad__control-btn:first-child:hover {
+  background-color: rgba(9, 147, 198, 0.065);
+  color: #2b95bb;
+  border: 1px solid #37afda;
+}
+
+.notepad-container {
+  background-color: #f3f3f3;
+  padding: 28px;
+  min-height: 480px;
+  max-height: 60vh;
+  overflow: auto;
+}
+
+@media screen and (max-width: 479px) {
+  .notepad-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .notepad-header__controls-group {
+    margin-top: 28px;
+  }
+}

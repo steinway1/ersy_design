@@ -1,0 +1,476 @@
+* {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .004);
+}
+
+.sign-modal {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  z-index: 9999;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: none;
+  background-color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
+.sign-modal.is-visible {
+  display: flex;
+}
+
+.sign-modal__form-row {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 18px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.sign-modal__form-row.form-row_double {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.sign-modal-view__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 36px;
+}
+
+.sign-modal__form-row label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sign-modal__heading {
+  margin-top: 0px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.sign-modal__close-icon {
+  position: absolute;
+  left: auto;
+  top: 0%;
+  right: 0%;
+  bottom: auto;
+  z-index: 2;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  padding: 16px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #f7f8f8;
+  -webkit-transition: all 200ms cubic-bezier(.39, .575, .565, 1);
+  transition: all 200ms cubic-bezier(.39, .575, .565, 1);
+  cursor: pointer;
+}
+
+.sign-modal__close-icon:hover {
+  background-color: #fff;
+  color: #171c25;
+}
+
+.sign-modal-view {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+.sign-modal__form-sublinks {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 12px;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.sign-modal__sub-span {
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sign-modal__form-sub-controls {
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+.sign-modal__form-sub-controls:hover > span {
+  color: #0995c6;
+}
+
+.sign-modal__subtitle {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.sign-modal__main-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: auto;
+  padding: 92px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-color: #fff;
+}
+
+.sign-modal__form-col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  width: 49%;
+}
+
+
+.sign-modal__bg-img {
+  position: absolute;
+  left: -109px;
+  top: -7.9vw;
+  right: auto;
+  bottom: auto;
+  display: block;
+  width: 60vw;
+  height: 60vw;
+  max-width: none;
+}
+
+.sign-modal__reset-link {
+  background-color: transparent;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.sign-modal__reset-link:hover {
+  color: #0995c6;
+}
+
+.sign-modal__side {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  width: 30%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #eaeef1;
+  background-image: none;
+}
+
+.sign-modal__logo-img {
+  position: relative;
+  z-index: 2;
+  width: 210px;
+}
+
+.sign-modal__form-row input {
+  height: 54px;
+  width: 100%;
+  margin-bottom: 0px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dce2eb;
+  background-color: #fff;
+  -webkit-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
+
+.sign-modal__form-row input:hover {
+  border-color: #0995c6;
+}
+
+.sign-modal__form-row input:focus {
+  border-color: #0995c6;
+  background-color: rgba(9, 149, 198, 0.08);
+}
+
+.sign-modal__form-row input::-webkit-input-placeholder {
+  color: #868a94;
+  font-size: 14px;
+}
+
+.sign-modal__form-row input:-ms-input-placeholder {
+  color: #868a94;
+  font-size: 14px;
+}
+
+.sign-modal__form-row input::-ms-input-placeholder {
+  color: #868a94;
+  font-size: 14px;
+}
+
+.sign-modal__form-row input::placeholder {
+  color: #868a94;
+  font-size: 14px;
+}
+
+.sign-modal-view__body {
+  position: relative;
+}
+
+.sign-modal__form-controls {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 34px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  grid-column-gap: 14px;
+}
+
+.sign-modal__main-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  max-width: 260px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background-color: #0995c6;
+  box-shadow: 0 11px 32px 0 rgba(9, 149, 198, 0.2);
+  -webkit-transition: all 200ms cubic-bezier(.39, .575, .565, 1);
+  transition: all 200ms cubic-bezier(.39, .575, .565, 1);
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+}
+
+.sign-modal__main-btn:hover {
+  background-color: #0fa9df;
+}
+
+@media screen and (max-width: 991px) {
+  .sign-modal-view {
+    max-width: 440px;
+  }
+
+  .sign-modal__main-container {
+    padding-right: 52px;
+    padding-left: 52px;
+  }
+
+  .sign-modal__side {
+    width: 38%;
+    padding-right: 23px;
+    padding-left: 23px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .sign-modal-view {
+    max-width: none;
+  }
+
+  .sign-modal__main-container {
+    padding: 46px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+
+  .sign-modal {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .sign-modal__bg-img {
+    left: -69px;
+    width: 1000px;
+  }
+
+  .sign-modal__side {
+    width: 100%;
+    height: 220px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+
+  .sign-modal-view__header {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .sign-modal__form-row label {
+    margin-bottom: 6px;
+  }
+
+  .sign-modal__heading {
+    max-width: 300px;
+    margin-bottom: 8px;
+    font-size: 28px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .sign-modal__close-icon {
+    width: 40px;
+    height: 40px;
+    padding: 13px;
+    background-color: hsla(0, 0%, 100%, 0);
+  }
+
+  .sign-modal__subtitle {
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .sign-modal__main-container {
+    display: block;
+    overflow: visible;
+    padding: 40px 24px 68px;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+  }
+
+  .sign-modal {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: none;
+    overflow: auto;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .sign-modal__bg-img {
+    left: 8px;
+    top: -20%;
+    width: 92vw;
+    height: 92vw;
+  }
+
+  .sign-modal__side {
+    width: 100%;
+    height: 170px;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+  }
+
+  .sign-modal__form-row input {
+    height: 50px;
+    border-radius: 0px;
+  }
+
+  .sign-modal__main-btn {
+    max-width: none;
+  }
+}
