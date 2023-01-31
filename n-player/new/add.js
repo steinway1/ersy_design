@@ -128,16 +128,20 @@ $(function () {
 
   hideFloatingButtons()
 
-  if ($(window).width() < 2600 && floatingWrap) {
+  if ($(window).width() < 992 && floatingWrap) {
     let el = $('.tabs_overscroll')
     $(window).scroll(function () {
       let elOffset = el.offset().top,
         elHeight = el.outerHeight(),
+        footerOffset = $('footer').offset().top,
         thisScroll = $(this).scrollTop(),
         scrollBias = $(window).width() > 991 ? (0 + $('header').outerHeight()) : 270
       if (thisScroll > (elOffset + elHeight - scrollBias)) {
         showFloatingButtons()
       } else {
+        hideFloatingButtons()
+      }
+      if (thisScroll > footerOffset - 600) {
         hideFloatingButtons()
       }
     });
