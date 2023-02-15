@@ -42,6 +42,19 @@ $(function () {
     circle.css({ top: y + 'px', left: x + 'px' }).addClass('animate')
   }
 
+  function animateAutoHeight(el, time) {
+    let thisHeight = el.height(),
+    autoHeight = el.css('height', 'auto').height()
+    el.height(thisHeight).animate({
+      height: autoHeight
+    }, time)
+  }
+  function animateZeroHeight(el, time) {
+    el.stop().animate({
+      height: 0
+    }, time)
+  }
+
   playerButton.add(sectionButton).add(playlistItem).add(eFollowArtist).on('click', function (e) {
     clickEffect($(this), e)
   })
@@ -429,5 +442,116 @@ $(function () {
   appMenuLink.on('click', function () {
     closeMenu()
   })
+
+
+
+  // -- Subpages
+  let switchViewButton = $('.sub-head__switch-button'),
+    subHeadTab = $('.sub-head__btn-tab'),
+    listTotal = $('.list-total'),
+    searchListInput = $('#searchLists')
+
+  const SWITCH_LIST_ATTR = 'data-switch-list',
+    GRID_VIEW = 'list-container_grid',
+    LIST_TAB_ATTR = 'data-list-tab'
+
+  let pageContent = $('.page-content'),
+    listContainer = $('.list-container')
+
+  function toggleActiveClass(el, $this) {
+    $this.siblings(el).removeClass(IS_ACTIVE)
+    $this.addClass(IS_ACTIVE)
+  }
+
+  function switchListView($this) {
+    let thisAttr = $this.attr(SWITCH_LIST_ATTR)
+    if (thisAttr) {
+      let container = $this.closest(pageContent).find(listContainer)
+      if (thisAttr == 'grid' && !container.hasClass(GRID_VIEW)) {
+        container.addClass(GRID_VIEW)
+      } else if (thisAttr == 'list' && container.hasClass(GRID_VIEW)) {
+        container.removeClass(GRID_VIEW)
+      } else {
+        container.removeClass(GRID_VIEW)
+      }
+    }
+  }
+
+  function sortListType($this) {
+    let thisAttr = $this.attr(LIST_TAB_ATTR)
+    if (thisAttr) {
+      if (thisAttr == 'all') {
+        listTotal.show()
+      } else {
+        let n = listTotal.filter(function () {
+          if ($(this).attr('data-list-type') == thisAttr) {
+            return this
+          }
+        })
+        if (n.length !== 0) {
+          listTotal.show().not(n).hide()
+        } else {
+          listTotal.show()
+        }
+      }
+    }
+  }
+
+  function filterSearchLists(input) {
+    $(`[${LIST_TAB_ATTR}="all"]`).trigger('click')
+    let thisVal = input.val(),
+      found = listTotal.filter(function () {
+        if (~$(this).find('.list-total__list-name').text().toLowerCase().indexOf(thisVal.toLowerCase())) {
+          return this
+        }
+      })
+    listTotal.show().not(found).hide()
+  }
+
+
+  switchViewButton.click(function () {
+    toggleActiveClass(switchViewButton, $(this))
+  })
+  subHeadTab.click(function () {
+    toggleActiveClass(subHeadTab, $(this))
+  })
+
+  $(`[${SWITCH_LIST_ATTR}]`).click(function () {
+    switchListView($(this))
+  })
+
+  $(`[${LIST_TAB_ATTR}]`).click(function () {
+    sortListType($(this))
+  })
+
+  searchListInput.on('keyup', function () {
+    filterSearchLists($(this))
+  })
+
+
+  // Toggle subpage head filters
+  let eToggleFilter = $('[data-evt="toggleSubheadFilters"]'),
+    subpageFilters = $('.sub-head__filters-group'),
+    animateHeightTime = $(window).width() > 479 ? 130 : 290
+
+    eToggleFilter.click(function() {
+      if (subpageFilters.height() !== 0) {
+        animateZeroHeight(subpageFilters, animateHeightTime)
+        $(this).removeClass(IS_ACTIVE)
+      } else {
+        animateAutoHeight(subpageFilters, animateHeightTime)
+        $(this).addClass(IS_ACTIVE)
+      }
+    })
+
+    // Artists subpage
+    let artistCardFollow = $('.artist-card__follow-button')
+    artistCardFollow.click(function() {
+      if ($(this).hasClass(IS_ACTIVE)) {
+        $(this).removeClass(IS_ACTIVE).find('span').text('Follow')
+      } else {
+        $(this).addClass(IS_ACTIVE).find('span').text('Followed')
+      }
+    })
 
 })
