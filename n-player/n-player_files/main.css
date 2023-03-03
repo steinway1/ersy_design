@@ -1616,6 +1616,10 @@ a {
   padding-bottom: 42px;
 }
 
+.rs-subhead.rs-subhead_min {
+  padding-bottom: 12px;
+}
+
 .rs-subhead__controls {
   display: -webkit-box;
   display: -webkit-flex;
