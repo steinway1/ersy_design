@@ -27,6 +27,9 @@ $(function () {
     let animEl = '.clickCircle'
     if (el.find(animEl).length == 0)
       el.prepend("<span class='clickCircle'></span>")
+      el.css({
+        '-webkit-mask-image':'-webkit-radial-gradient(white, black)'
+      })
 
     circle = el.find(animEl)
     circle.removeClass('animate')
@@ -44,7 +47,7 @@ $(function () {
 
   function animateAutoHeight(el, time) {
     let thisHeight = el.height(),
-    autoHeight = el.css('height', 'auto').height()
+      autoHeight = el.css('height', 'auto').height()
     el.height(thisHeight).animate({
       height: autoHeight
     }, time)
@@ -55,7 +58,7 @@ $(function () {
     }, time)
   }
 
-  playerButton.add(sectionButton).add(playlistItem).add(eFollowArtist).on('click', function (e) {
+  playerButton.add(sectionButton).add(playlistItem).add(eFollowArtist).add('.player-tab').on('click', function (e) {
     clickEffect($(this), e)
   })
 
@@ -534,24 +537,106 @@ $(function () {
     subpageFilters = $('.sub-head__filters-group'),
     animateHeightTime = $(window).width() > 479 ? 130 : 290
 
-    eToggleFilter.click(function() {
-      if (subpageFilters.height() !== 0) {
-        animateZeroHeight(subpageFilters, animateHeightTime)
-        $(this).removeClass(IS_ACTIVE)
-      } else {
-        animateAutoHeight(subpageFilters, animateHeightTime)
-        $(this).addClass(IS_ACTIVE)
-      }
-    })
+  eToggleFilter.click(function () {
+    if (subpageFilters.height() !== 0) {
+      animateZeroHeight(subpageFilters, animateHeightTime)
+      $(this).removeClass(IS_ACTIVE)
+    } else {
+      animateAutoHeight(subpageFilters, animateHeightTime)
+      $(this).addClass(IS_ACTIVE)
+    }
+  })
 
-    // Artists subpage
-    let artistCardFollow = $('.artist-card__follow-button')
-    artistCardFollow.click(function() {
-      if ($(this).hasClass(IS_ACTIVE)) {
-        $(this).removeClass(IS_ACTIVE).find('span').text('Follow')
+  // Artists subpage
+  let artistCardFollow = $('.artist-card__follow-button')
+  artistCardFollow.click(function () {
+    if ($(this).hasClass(IS_ACTIVE)) {
+      $(this).removeClass(IS_ACTIVE).find('span').text('Follow')
+    } else {
+      $(this).addClass(IS_ACTIVE).find('span').text('Followed')
+    }
+  })
+
+  const sidePlayer = {
+    init: function () {
+      this.cacheDOM()
+      this.bindEvents()
+    },
+    cacheDOM: function () {
+      this.expandTab = $('[data-evt="expandPlayerTabs"]')
+      this.tabsGrid = $('.player__tabs-grid')
+      this.playlistItems = $('.playlist-item')
+      this.searchMain = $('.player-search__main')
+      this.searchInput = this.searchMain.find('input')
+      this.searchResults = $('.player-search__results')
+      this.eCloseSearch = $('[data-evt="closePlayerSearch"]')
+      this.eOpenSearch = $('[data-evt="openPlayerSearch"]')
+      this.playlistBody = $('.playlist-body')
+    },
+
+    searchHeight: '74px',
+    resultsHeight: '220px',
+    searchIsOpened: false,
+    bindEvents: function () {
+      this.expandTab.on('click', this.toggleTabsGrid.bind(this))
+      this.eCloseSearch.on('click', function(e) {
+        e.preventDefault()
+        sidePlayer.closeSearch()
+      })
+      this.eOpenSearch.on('click', this.openSearch.bind(this))
+      this.searchInput.on('input', function() {
+        let val = $(this).val()
+        sidePlayer.checkInput(val)
+      })
+      this.playlistBody.on('click', function() {
+        if (sidePlayer.searchIsOpened == true) {
+          sidePlayer.closeSearch()
+        }
+      })
+    },
+    openSearch: function() {
+      this.searchIsOpened = true
+      this.searchMain.css({'height': this.searchHeight})
+      this.searchInput.focus()
+      this.playlistItems.css({
+        'opacity':'0.07',
+        'pointer-events':'none'
+      })
+    },
+    closeSearch: function() {
+      this.searchIsOpened = false
+      this.searchMain.css({'height': '0px'})
+      this.searchInput.blur().val('')
+      this.closeResults()
+      this.playlistItems.css({
+        'opacity':'1',
+        'pointer-events':'auto'
+      })
+    },
+    openResults: function() {
+      this.searchResults.css('height', this.resultsHeight)
+    },
+    closeResults: function() {
+      this.searchResults.css('height', '0px')
+    },
+    checkInput: function(val) {
+      if (val.length !== 0) {
+        this.openResults()
       } else {
-        $(this).addClass(IS_ACTIVE).find('span').text('Followed')
+        this.closeResults()
       }
-    })
+    },
+    toggleTabsGrid: function () {
+      let el = this.tabsGrid, t = this.expandTab.find('span')
+      if (el.hasClass(IS_EXPANDED)) {
+        el.removeClass(IS_EXPANDED)
+        t.html('More')
+      } else {
+        el.addClass(IS_EXPANDED)
+        t.html('Less')
+      }
+    }
+  }
+  sidePlayer.init()
 
 })
