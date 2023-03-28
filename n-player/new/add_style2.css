@@ -71,6 +71,19 @@ body.player_collapsed .player-video {
   margin-bottom: 0px !important;
 }
 
+body.player_collapsed .player {
+  border: none;
+}
+
+body.player_collapsed .player-container_max-area {
+  position: static;
+}
+
+body.player_collapsed .player__info-wrapper {
+  padding: 0px;
+  width: 100%;
+}
+
 .playlist-item__left {
   position: relative;
 }
@@ -1109,7 +1122,14 @@ body.player_collapsed .player-video {
   }
 
   .player {
-    width: 100%;
+    width: 100% !important;
+    border: none;
+  }
+
+  body.player_visible .player {
+    -webkit-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    transform: translateX(0px);
   }
 }
 
