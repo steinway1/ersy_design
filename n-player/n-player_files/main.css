@@ -1997,26 +1997,6 @@ a {
   color: rgba(23, 28, 41, 0.4);
 }
 
-.album-item {
-  -webkit-transition: all 200ms ease;
-  transition: all 200ms ease;
-  cursor: pointer;
-}
-
-.album-item:hover {
-  opacity: 0.8;
-  color: #135d76;
-}
-
-.album-cover {
-  width: 100%;
-  margin-bottom: 0px;
-}
-
-.albums-details {
-  margin-top: 12px;
-}
-
 .disco-views {
   margin-top: 5px;
   color: #135d76;
@@ -5443,10 +5423,6 @@ a {
 
   .form-wrap.for_artist {
     margin-right: 0px;
-  }
-
-  .album-item {
-    margin-bottom: 15px;
   }
 
   .disco-title {
