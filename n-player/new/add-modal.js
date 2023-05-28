@@ -187,4 +187,24 @@ $(function () {
     resetSetList()
   })
 
+  let galleryModal = $('.gallery-modal')
+  $(document).on('click', '.gallery-item__img', function (e) {
+    if ($(e.target)) {
+      openGalleryModal()
+    }
+  })
+  $(document).on('click', '[data-evt="closeGalleryModal"]', function(e) {
+    if ($(e.target)) {
+      closeGalleryModal()
+    }
+  })
+  function openGalleryModal() {
+    lockBody()
+    galleryModal.show()
+  }
+  function closeGalleryModal() {
+    unlockBody()
+    galleryModal.hide()
+  }
+
 })

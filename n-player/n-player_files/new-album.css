@@ -1,7 +1,7 @@
-.body {
+body {
   color: #171c29;
-  background-color: #f5f6f8;
-  font-family: Poppins, sans-serif;
+  /* background-color: #f5f6f8; */
+  font-family: Poppins, sans-serif !important;
 }
 
 .utility-page-wrap {

@@ -1264,6 +1264,48 @@
     </footer>
   </main>
 
+  <!-- Gallery modal -->
+  <div class="gallery-modal">
+    <div class="gallery-modal__backdrop"></div>
+    <div class="gallery-modal__wrapper">
+      <button data-evt="closeGalleryModal" class="gallery-modal__close-btn">
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L23 23" stroke="currentColor" stroke-width="2.5"></path>
+          <path d="M23 1L1 23" stroke="currentColor" stroke-width="2.5"></path>
+        </svg>
+      </button>
+      <div class="gallery-modal__container">
+        <picture>
+          <img src="./new/gallery-modal_sample.jpeg" loading="lazy" alt="">
+          <a target="_blank" onclick="" class="gallery-modal__external-link">
+            <svg style="margin-right: 4px; margin-top: -1px;" width="10" height="10" viewbox="0 0 29 27" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 4.11462H1.65784V25.4304H25.342V18" stroke="currentColor" stroke-width="3"
+                stroke-linejoin="bevel"></path>
+              <path d="M13 15.9394L24.7528 4.18665" stroke="currentColor" stroke-width="3"></path>
+              <path d="M16.3793 4.18682H24.753V12.5604" stroke="currentColor" stroke-width="3"></path>
+            </svg> Open Source
+          </a>
+          <div class="gallery-modal__pic-overlay">
+            <span class="gallery-modal__description">1024x576px<span>•</span>Uploaded on 26 May, 2023</span>
+          </div>
+        </picture>
+      </div>
+      <div class="gallery-modal__controls">
+        <button id="galleryPrev" class="gallery-modal__pag-btn">
+          <svg width="16" height="16" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 1L6 12L17 23" stroke="currentColor" stroke-width="2.5"></path>
+          </svg>
+        </button>
+        <button id="galleryNext" class="gallery-modal__pag-btn">
+          <svg width="16" height="16" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 1L18 12L7 23" stroke="currentColor" stroke-width="2.5"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div class="bws-modal" id="playlist-modal" style="display: none;">
     <div class="bws-modal-overlay"></div>
     <div class="bws-modal-content">

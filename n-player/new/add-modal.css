@@ -457,3 +457,183 @@
     padding-left: 20px;
   }
 }
+
+/* Gallery modal */
+.gallery-modal {
+  z-index: 1001;
+  display: none;
+  position: fixed;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.gallery-modal__container {
+  width: 100%;
+  height: 70vh;
+  max-width: 800px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.gallery-modal__backdrop {
+  background-color: #f8f9fa;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.gallery-modal__pag-btn {
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  background-color: #e9ecf0;
+  border: 1px solid #e9ecf0;
+  justify-content: center;
+  align-items: center;
+  margin-left: 6px;
+  margin-right: 6px;
+  transition: all .15s cubic-bezier(.39, .575, .565, 1);
+  display: flex;
+}
+
+.gallery-modal__pag-btn:hover {
+  background-color: rgba(233, 236, 240, 0);
+  border-color: #d1d6dd;
+}
+
+.gallery-modal__pag-btn:active {
+  transform: scale(.92);
+}
+
+.gallery-modal__close-btn {
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: auto;
+  left: auto;
+  right: 0%;
+  background-color: transparent;
+}
+
+.gallery-modal__description > span {
+  padding-left: 6px;
+  padding-right: 6px;
+  display: inline-block;
+}
+
+.gallery-modal__wrapper {
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+.gallery-modal__description {
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+.gallery-modal__external-link {
+  color: rgba(255, 255, 255, .8);
+  cursor: pointer;
+  background-color: rgba(23, 28, 41, .2);
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 500;
+  transition: all .2s;
+  display: flex;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.gallery-modal__external-link:hover {
+  color: #fff;
+  background-color: #0ca8dd;
+}
+
+.gallery-modal__container picture {
+  max-height: 70vh;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  display: flex;
+  position: relative;
+}
+
+.gallery-modal__controls {
+  z-index: 1;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+}
+
+.gallery-modal picture img {
+  width: 100%;
+  max-height: 70vh;
+  display: block;
+}
+
+.gallery-modal__pic-overlay {
+  min-height: 80px;
+  color: #fff;
+  background-image: linear-gradient(rgba(23, 28, 41, 0), rgba(23, 28, 41, .4));
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 12px;
+  font-size: 12px;
+  display: flex;
+  position: absolute;
+  top: auto;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+}
+
+@media screen and (min-width: 1440px) {
+  .gallery-modal__container {
+    max-width: 1080px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .gallery-modal__container {
+    max-width: 1420px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .gallery-modal__container {
+    max-width: none;
+  }
+}
+
+@media screen and (max-width: 479px) {
+
+  .gallery-modal__container picture,
+  .gallery-modal picture img {
+    max-height: 50vh;
+  }
+}
