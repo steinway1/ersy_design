@@ -998,6 +998,7 @@
               </div>
             </div>
 
+
           </div>
         </div>
       </div>
@@ -1172,92 +1173,93 @@
 
             </div>
 
+            <!-- NEW PAGINATION -->
+            <div class="page-pagination">
+              <div class="page-pagination__wrapper">
+                <div class="page-pagination__buttons">
+                  <div class="page-pagination__buttons-wrapper">
+                    <button onclick="" class="pagination-btn">
+                      <svg width="12" height="12" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 1L6 12L17 23" stroke="currentColor" stroke-width="3"></path>
+                      </svg>
+                    </button>
+                    <button onclick="" class="pagination-btn">1</button>
+                    <button onclick="" class="pagination-btn" disabled>...</button>
+                    <button onclick="" class="pagination-btn">8</button>
+                    <button onclick="" class="pagination-btn is-active">9</button>
+                    <button onclick="" class="pagination-btn">10</button>
+                    <button onclick="" class="pagination-btn" disabled>...</button>
+                    <button onclick="" class="pagination-btn">34</button>
+                    <button onclick="" class="pagination-btn">
+                      <svg width="12" height="12" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 1L18 12L7 23" stroke="currentColor" stroke-width="3"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="page-pagination__go">
+                  <form method="get" class="page-pagination__go-wrapper">
+                    <span class="page-pagination__dim-typo">Go To</span>
+                    <input type="text" class="page-pagination__go-field" required>
+                    <button data-evt="toPage" class="page-pagination__go-submit">Page
+                      <svg class="margin-left: 12px;" width="12" height="12" viewbox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 1L18 12L7 23" stroke="currentColor" stroke-width="3"></path>
+                      </svg>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
+
       <!-- nd -->
 
     </div>
 
+    <!-- NEW -- Updated Footer -->
     <footer class="footer">
       <div class="footer__wrap app_inner">
-        <div class="sub-area">
-          <div class="footer__main">
-            <div class="footer__spot-wrap">
-              <a href="http://ersy.com/" class="footer__logo-link">
-                <img src="./new/img/bluegold-logo.svg">
-              </a>
-              <span class="footer-quote">We make searching around the world easier and broader</span>
-            </div>
-            <div class="footer__columns-wrap">
-              <div class="footer__column">
-                <h5>Explore Ersy</h5>
-                <ul role="list" class="footer__list">
-                  <li>
-                    <a href="http://ersy.com/pools/music-videos"
-                      onclick="return(navigateTo('/pools/music-videos', false, event))">Music Videos</a>
-                  </li>
-                  <li>
-                    <a href="http://ersy.com/artists" onclick="return(navigateTo('/artists', false, event))">Artists</a>
-                  </li>
-                  <li>
-                    <a href="http://ersy.com/pools/interviews"
-                      onclick="return(navigateTo('/pools/interviews', false, event))">Interviews</a>
-                  </li>
-                  <li>
-                    <a href="http://ersy.com/pools/albums"
-                      onclick="return(navigateTo('/pools/albums', false, event))">Albums</a>
-                  </li>
-                  <li>
-                    <a href="/gallery" onclick="return(navigateTo('/gallery', false, event))">Gallery</a>
-                  </li>
-                  <li>
-                    <a href="/lists" onclick="return(navigateTo('/lists', false, event))">Lists</a>
-                  </li>
-                  <li>
-                    <a href="/merch" onclick="return(navigateTo('/merch', false, event))" class="footer__sub-link">
-                      <span>Shop Merch</span>
-                      <span class="footer__sub-link-tag">NEW</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="footer__column">
-                <h5>Useful Information</h5>
-                <ul role="list" class="footer__list">
-                  <li>
-                    <a href="http://ersy.com/artists/j-balvin#/" class="open_privacy">Privacy Policy</a>
-                  </li>
-                  <li>
-                    <a href="http://ersy.com/artists/j-balvin#/" class="open_terms">Terms &amp; Conditions</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="footer__column">
-                <h5>Contact Us</h5>
-                <a href="http://ersy.com/artists/j-balvin#/" class="footer__contact-link">helpcenter@ersy.com</a>
-              </div>
+        <div class="footer__main">
+          <div class="footer__main-details">
+            <a href="https://ersy.com" class="footer-logo">
+              <img src="./n-player_files/ew-logo.svg" loading="lazy" alt="Ersy logotype" class="footer-logo__img">
+            </a>
+            <div class="footer__links-wrap">
+              <nav class="footer__links-list">
+                <a href="/pools/music-videos" class="footer-link">Music Videos</a>
+                <a href="/artists" class="footer-link">Artists</a>
+                <a href="/pools/interviews" class="footer-link">Interviews</a>
+                <a href="/pools/albums" class="footer-link">Albums</a>
+                <a href="/gallery" class="footer-link">Gallery</a>
+                <a href="/lists" class="footer-link">Lists</a>
+                <a href="/record-labels" class="footer-link">Record Labels</a>
+                <a href="/merch" class="footer-link">Shop</a>
+              </nav>
             </div>
           </div>
-
-          <div class="footer__bottom">
-            <div class="footer__bottom-wrap">
-              <div class="footer__bottom-content">© 2022 Ersy Music. All rights reserved<br></div>
-              <div class="footer__social-grid">
-                <a href="#" class="footer__social-link">
-                  <img src="./new/img/circle-youtube.svg" class="footer__social-link-img"></a>
-                <a href="#" class="footer__social-link">
-                  <img src="./new/img/circle-twitter.svg" class="footer__social-link-img"></a>
-                <a href="#" class="footer__social-link">
-                  <img src="./new/img/circle-tiktok.svg" class="footer__social-link-img"></a>
-                <a href="#" class="footer__social-link">
-                  <img src="./new/img/circle-facebook.svg" class="footer__social-link-img"></a>
-                <a href="#" class="footer__social-link">
-                  <img src="./new/img/circle-linkedin.svg" class="footer__social-link-img"></a>
-                <a href="#" class="footer__social-link">
-                  <img src="./new/img/circle-telegram.svg" class="footer__social-link-img"></a>
-              </div>
-            </div>
+          <div class="footer__social-grid">
+            <a href="https://www.instagram.com/ersytheapp/" target="_blank" class="footer__social-link">
+              <img src="./n-player_files/circle-instagram.svg" class="footer__social-link-img">
+            </a>
+            <a href="#" class="footer__social-link">
+              <img src="./n-player_files/circle-twitter.svg" class="footer__social-link-img">
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=100092669497068" class="footer__social-link">
+              <img src="./n-player_files/circle-facebook.svg" class="footer__social-link-img">
+            </a>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <div class="footer__bottom-content">
+            <span class="footer-disclaimer">© 2023 Ersy - All rights reserved.</span>
+          </div>
+          <div class="footer__bottom-links">
+            <a href="#" class="footer-sub-link">Terms &amp; Conditions</a>
+            <a href="#" class="footer-sub-link">Privacy Policy</a>
           </div>
         </div>
       </div>
