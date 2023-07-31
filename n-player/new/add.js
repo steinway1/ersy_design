@@ -27,9 +27,9 @@ $(function () {
     let animEl = '.clickCircle'
     if (el.find(animEl).length == 0)
       el.prepend("<span class='clickCircle'></span>")
-      el.css({
-        '-webkit-mask-image':'-webkit-radial-gradient(white, black)'
-      })
+    el.css({
+      '-webkit-mask-image': '-webkit-radial-gradient(white, black)'
+    })
 
     circle = el.find(animEl)
     circle.removeClass('animate')
@@ -579,47 +579,47 @@ $(function () {
     searchIsOpened: false,
     bindEvents: function () {
       this.expandTab.on('click', this.toggleTabsGrid.bind(this))
-      this.eCloseSearch.on('click', function(e) {
+      this.eCloseSearch.on('click', function (e) {
         e.preventDefault()
         sidePlayer.closeSearch()
       })
       this.eOpenSearch.on('click', this.openSearch.bind(this))
-      this.searchInput.on('input', function() {
+      this.searchInput.on('input', function () {
         let val = $(this).val()
         sidePlayer.checkInput(val)
       })
-      this.playlistBody.on('click', function() {
+      this.playlistBody.on('click', function () {
         if (sidePlayer.searchIsOpened == true) {
           sidePlayer.closeSearch()
         }
       })
     },
-    openSearch: function() {
+    openSearch: function () {
       this.searchIsOpened = true
-      this.searchMain.css({'height': this.searchHeight})
+      this.searchMain.css({ 'height': this.searchHeight })
       this.searchInput.focus()
       this.playlistItems.css({
-        'opacity':'0.07',
-        'pointer-events':'none'
+        'opacity': '0.07',
+        'pointer-events': 'none'
       })
     },
-    closeSearch: function() {
+    closeSearch: function () {
       this.searchIsOpened = false
-      this.searchMain.css({'height': '0px'})
+      this.searchMain.css({ 'height': '0px' })
       this.searchInput.blur().val('')
       this.closeResults()
       this.playlistItems.css({
-        'opacity':'1',
-        'pointer-events':'auto'
+        'opacity': '1',
+        'pointer-events': 'auto'
       })
     },
-    openResults: function() {
+    openResults: function () {
       this.searchResults.css('height', this.resultsHeight)
     },
-    closeResults: function() {
+    closeResults: function () {
       this.searchResults.css('height', '0px')
     },
-    checkInput: function(val) {
+    checkInput: function (val) {
       if (val.length !== 0) {
         this.openResults()
       } else {
@@ -638,5 +638,14 @@ $(function () {
     }
   }
   sidePlayer.init()
+
+  $(document).on('click', '.follow-button', function () {
+    let $this = $(this)
+    if ($this.hasClass('is-active')) {
+      $this.removeClass('is-active').html('FOLLOW ARTIST')
+    } else {
+      $this.addClass('is-active').html('FOLLOWING')
+    }
+  })
 
 })
