@@ -431,29 +431,25 @@ $(function () {
   let appMenu = $('.app-menu'),
     appMenuBackdrop = $('.app-menu__backdrop'),
     appMenuContainer = $('.app-menu__container'),
-    eToggleMenu = $('[data-evt="toggleMenu"]'),
-    appMenuLink = $('.app-menu__main-list a')
-
-  // Initial
-  appMenu.hide()
-  appMenuBackdrop.add(appMenuContainer).removeClass(IS_VISIBLE)
+    eToggleMenu = $('[data-evt="toggleMenu"]')
 
   function openMenu() {
     lockBody()
     appMenu.show()
     setTimeout(() => {
-      appMenuBackdrop.addClass(IS_VISIBLE)
-      appMenuContainer.addClass(IS_VISIBLE)
+      Object.assign(appMenuBackdrop[0].style, { opacity: 1 })
+      Object.assign(appMenuContainer[0].style, { transform: 'translateX(0%)' })
     }, 1);
   }
 
   function closeMenu() {
+    let timeToHide = ((parseFloat(window.getComputedStyle(appMenuContainer[0]).transitionDuration) * 1000) + 1)
     unlockBody()
-    appMenuBackdrop.removeClass(IS_VISIBLE)
-    appMenuContainer.removeClass(IS_VISIBLE)
+    Object.assign(appMenuBackdrop[0].style, { opacity: 0 })
+    Object.assign(appMenuContainer[0].style, { transform: 'translateX(-100%)' })
     setTimeout(() => {
       appMenu.hide()
-    }, 301);
+    }, timeToHide);
   }
 
   function toggleMenu() {
@@ -464,7 +460,7 @@ $(function () {
     }
   }
 
-  eToggleMenu.add(appMenuBackdrop).on('click', function () {
+  eToggleMenu.on('click', function () {
     toggleMenu()
   })
 
