@@ -2,17 +2,43 @@ $(function () {
 
   // Global
 
+  getDOMFooter = () => $(document).find('footer')[0]
+  getDOMHeader = () => $(document).find('header')[0]
+
   const P_MIN = 'player_collapsed',
     P_VISIBLE = 'player_visible',
     IS_ACTIVE = 'is-active',
     IS_VISIBLE = 'is-visible',
-    IS_EXPANDED = 'is-expanded'
+    IS_EXPANDED = 'is-expanded',
+    IS_HIDDEN = 'is-hidden'
 
   let player = $('.player'), body = $('body'), playerButton = $('.player-button'),
     sectionButton = $('.player-section__main-button'), playlistItem = $('.playlist-item'),
     playerBackdrop = $('.player-backdrop')
 
   let eFollowArtist = $('.follow-artist')
+
+
+  function scrollSmoothlyToY(pos, time) {
+    var currentPos = window.pageYOffset;
+    var start = null;
+    if (time == null) time = 500;
+    pos = +pos, time = +time;
+    window.requestAnimationFrame(function step(currentTime) {
+      start = !start ? currentTime : start;
+      var progress = currentTime - start;
+      if (currentPos < pos) {
+        window.scrollTo(0, ((pos - currentPos) * progress / time) + currentPos);
+      } else {
+        window.scrollTo(0, currentPos - ((currentPos - pos) * progress / time));
+      }
+      if (progress < time) {
+        window.requestAnimationFrame(step);
+      } else {
+        window.scrollTo(0, pos);
+      }
+    });
+  }
 
 
   function elToggleClass(el, cl) {
@@ -91,77 +117,77 @@ $(function () {
   }
 
 
-  // --- Tabs modal
-  let tabsModal = $('.tabs-modal'),
-    tabsModalBackdrop = $('.tabs-modal__backdrop'),
-    tabsModalContainer = $('.tabs-modal__container'),
-    tabsModalClose = $('.tabs-modal__close-btn'),
-    eTabsModalOpen = $('[data-evt="openTabsModal"]')
+  // // --- Tabs modal
+  // let tabsModal = $('.tabs-modal'),
+  //   tabsModalBackdrop = $('.tabs-modal__backdrop'),
+  //   tabsModalContainer = $('.tabs-modal__container'),
+  //   tabsModalClose = $('.tabs-modal__close-btn'),
+  //   eTabsModalOpen = $('[data-evt="openTabsModal"]')
 
-  let tabsModalTab = tabsModal.find('.btn-tab')
-  // Initial
-  tabsModal.hide()
-  tabsModalBackdrop.add(tabsModalContainer).removeClass(IS_VISIBLE)
+  // let tabsModalTab = tabsModal.find('.btn-tab')
+  // // Initial
+  // tabsModal.hide()
+  // tabsModalBackdrop.add(tabsModalContainer).removeClass(IS_VISIBLE)
 
-  function openTabsModal() {
-    lockBody()
-    tabsModal.show()
-    setTimeout(() => {
-      tabsModalBackdrop.add(tabsModalContainer).addClass(IS_VISIBLE)
-    }, 1);
-  }
+  // function openTabsModal() {
+  //   lockBody()
+  //   tabsModal.show()
+  //   setTimeout(() => {
+  //     tabsModalBackdrop.add(tabsModalContainer).addClass(IS_VISIBLE)
+  //   }, 1);
+  // }
 
-  function closeTabsModal() {
-    tabsModalBackdrop.add(tabsModalContainer).removeClass(IS_VISIBLE)
-    setTimeout(() => {
-      tabsModal.hide()
-      unlockBody()
-    }, 451);
-  }
+  // function closeTabsModal() {
+  //   tabsModalBackdrop.add(tabsModalContainer).removeClass(IS_VISIBLE)
+  //   setTimeout(() => {
+  //     tabsModal.hide()
+  //     unlockBody()
+  //   }, 451);
+  // }
 
-  eTabsModalOpen.on('click', function () {
-    openTabsModal()
-  })
-  tabsModalClose.add(tabsModalBackdrop).add(tabsModalTab).on('click', function () {
-    closeTabsModal()
-  })
+  // eTabsModalOpen.on('click', function () {
+  //   openTabsModal()
+  // })
+  // tabsModalClose.add(tabsModalBackdrop).add(tabsModalTab).on('click', function () {
+  //   closeTabsModal()
+  // })
 
 
 
-  // --- Floating button EXPLORE
-  let floatingVisible,
-    floatingWrap = $('.floating-wrap')
+  // // --- Floating button EXPLORE
+  // let floatingVisible,
+  //   floatingWrap = $('.floating-wrap')
 
-  function showFloatingButtons() {
-    floatingVisible = true
-    floatingWrap.addClass(IS_VISIBLE)
-  }
+  // function showFloatingButtons() {
+  //   floatingVisible = true
+  //   floatingWrap.addClass(IS_VISIBLE)
+  // }
 
-  function hideFloatingButtons() {
-    floatingVisible = false
-    floatingWrap.removeClass(IS_VISIBLE)
-  }
+  // function hideFloatingButtons() {
+  //   floatingVisible = false
+  //   floatingWrap.removeClass(IS_VISIBLE)
+  // }
 
-  hideFloatingButtons()
+  // hideFloatingButtons()
 
-  if ($(window).width() < 992 && floatingWrap) {
-    let el = $('.tabs_overscroll')
-    $(window).scroll(function () {
-      let elOffset = el.offset().top,
-        elHeight = el.outerHeight(),
-        footerOffset = $('footer').offset().top,
-        thisScroll = $(this).scrollTop(),
-        scrollBias = $(window).width() > 991 ? (0 + $('header').outerHeight()) : 270
-      if (thisScroll > (elOffset + elHeight - scrollBias)) {
-        showFloatingButtons()
-      } else {
-        hideFloatingButtons()
-      }
-      if (thisScroll > footerOffset - 600) {
-        hideFloatingButtons()
-      }
-    });
-  }
+  // if ($(window).width() < 992 && floatingWrap) {
+  //   let el = $('.tabs_overscroll')
+  //   $(window).scroll(function () {
+  //     let elOffset = el.offset().top,
+  //       elHeight = el.outerHeight(),
+  //       footerOffset = $('footer').offset().top,
+  //       thisScroll = $(this).scrollTop(),
+  //       scrollBias = $(window).width() > 991 ? (0 + $('header').outerHeight()) : 270
+  //     if (thisScroll > (elOffset + elHeight - scrollBias)) {
+  //       showFloatingButtons()
+  //     } else {
+  //       hideFloatingButtons()
+  //     }
+  //     if (thisScroll > footerOffset - 600) {
+  //       hideFloatingButtons()
+  //     }
+  //   });
+  // }
 
 
 
@@ -647,5 +673,81 @@ $(function () {
       $this.addClass('is-active').html('FOLLOWING')
     }
   })
+
+
+  // Artist page navigation
+  const artistNav = {
+    init: function () {
+      this.renderDOM()
+      this.bindEvents()
+    },
+    renderDOM: function () {
+      // DOM
+      this.floatContainer = $('.page-artist__floating-buttons')
+      this.floatOffsetEl = $('.rs-tabs')
+      this.modal = $('.artist-nav-modal')
+      this.backdrop = $('.artist-nav-modal__backdrop')
+      this.container = $('.artist-nav-modal__container')
+      this.content = $('.artist-nav-modal__content')
+      // Events
+      this.evtToggleNav = $('[data-evt="toggleArtistNav"]')
+      this.evtPageUp = $('[data-evt="pageUp"]')
+    },
+    bindEvents: function () {
+      $(window).on({
+        scroll: function () {
+          let el = artistNav.floatContainer
+          if (el) {
+            let data = {
+              offset: artistNav.floatOffsetEl.offset().top,
+              elHeight: artistNav.floatOffsetEl.outerHeight(),
+              thisScroll: $(this).scrollTop(),
+              headerBias: $(getDOMHeader()).outerHeight()
+            }
+            if (data.thisScroll > ((data.offset + data.elHeight) - data.headerBias)) {
+              el[0].classList.add(IS_VISIBLE)
+            } else {
+              el[0].classList.remove(IS_VISIBLE)
+            }
+          }
+        }
+      })
+      this.evtPageUp.on({
+        click: function () { scrollSmoothlyToY(0, 350) }
+      })
+      this.evtToggleNav.on({
+        click: function () {
+          artistNav.toggleModal()
+        }
+      })
+      this.modal.find('.btn-tab').on({
+        click: function () {
+          artistNav.toggleModal();
+          scrollSmoothlyToY(artistNav.floatOffsetEl.offset().top, 200);
+        }
+      })
+    },
+    toggleModal: function () {
+      let a = this.modal, b = this.backdrop, c = this.container
+      if (a) {
+        let modalIsHidden = a.css('display') == 'none'
+        if (modalIsHidden) {
+          lockBody()
+          a.show(); setTimeout(() => {
+            Object.assign(b[0].style, { opacity: 1 })
+            Object.assign(c[0].style, { transform: 'translateY(0%)' })
+          }, 1);
+        } else {
+          unlockBody()
+          let timeToHide = ((parseFloat(window.getComputedStyle(c[0]).transitionDuration) * 1000) + 1)
+          Object.assign(b[0].style, { opacity: 0 })
+          Object.assign(c[0].style, { transform: 'translateY(100%)' }); setTimeout(() => {
+            a.hide()
+          }, timeToHide);
+        }
+      }
+    }
+  }
+  artistNav.init()
 
 })
