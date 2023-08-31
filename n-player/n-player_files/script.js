@@ -8,211 +8,211 @@ let lockBody = bodyScrollLock.disableBodyScroll;
 let unlockBody = bodyScrollLock.enableBodyScroll;
 
 function showSignIn() {
-    showModal()
+  showModal()
+  setTimeout(() => {
+    $('.modal__container.sign-in').css(cssDisplayInlineFlex)
     setTimeout(() => {
-        $('.modal__container.sign-in').css(cssDisplayInlineFlex)
-        setTimeout(() => {
-            $('.modal__container.sign-in').removeClass('is-hidden');
-            document.getElementById("signin-email").focus();
-        }, 10);
-    }, 220);
+      $('.modal__container.sign-in').removeClass('is-hidden');
+      document.getElementById("signin-email").focus();
+    }, 10);
+  }, 220);
 }
 //Modal - Sign Up
 function showSignUp() {
-    showModal()
+  showModal()
+  setTimeout(() => {
+    $('.modal__container.sign-up').css(cssDisplayInlineFlex)
     setTimeout(() => {
-        $('.modal__container.sign-up').css(cssDisplayInlineFlex)
-        setTimeout(() => {
-            $('.modal__container.sign-up').removeClass('is-hidden');
-            document.getElementById("signup-email").focus();
-        }, 10);
-    }, 220);   
+      $('.modal__container.sign-up').removeClass('is-hidden');
+      document.getElementById("signup-email").focus();
+    }, 10);
+  }, 220);
 }
 
 //Modal - Show
 function showModal() {
-    //lockBody('.modal');
-    $('.modal').css(cssDisplayBlock)
-    setTimeout(() => {
-        $('.modal').removeClass('is-hidden')
-    }, 10);
+  //lockBody('.modal');
+  $('.modal').css(cssDisplayBlock)
+  setTimeout(() => {
+    $('.modal').removeClass('is-hidden')
+  }, 10);
 }
 function hideModal() {
-    //unlockBody('.modal');
-    $('.modal__container').addClass('is-hidden')
-    setTimeout(() => {
-        $('.modal__container').css(cssDisplayNone)
-    }, 260);
+  //unlockBody('.modal');
+  $('.modal__container').addClass('is-hidden')
+  setTimeout(() => {
+    $('.modal__container').css(cssDisplayNone)
+  }, 260);
 }
 
 //.. Mobile menu
 $(document).ready(function () {
 
-    let mobMenu = $('.m-menu')
-    let menuList = $('.menu-list');
-    let menuItems = menuList.children('div');
+  let mobMenu = $('.m-menu')
+  let menuList = $('.menu-list');
+  let menuItems = menuList.children('div');
 
-    //Initial states
-    mobMenu.css({ 'opacity': '0' })
-    menuItems.css({ 'opacity': '0', 'transform': 'translate(0px,-15px)' })
+  //Initial states
+  mobMenu.css({ 'opacity': '0' })
+  menuItems.css({ 'opacity': '0', 'transform': 'translate(0px,-15px)' })
 
-    //Show menu elements staggering
-    function mShowStagger() {
-        for (var i = 0; i < menuItems.length; i++) {
-            var item = menuItems.eq(i);
-            var delay = (i + 1) / 10;
-            item.css({
-                'transition-delay': delay + "s",
-                'transition-duration': '.30s',
-                'transition-timing-function': 'cubic-bezier(0.075, 0.82, 0.165, 1)'
-            }).css({
-                'opacity': '1',
-                'transform': 'translate(0px,0px)'
-            })
-        };
+  //Show menu elements staggering
+  function mShowStagger() {
+    for (var i = 0; i < menuItems.length; i++) {
+      var item = menuItems.eq(i);
+      var delay = (i + 1) / 10;
+      item.css({
+        'transition-delay': delay + "s",
+        'transition-duration': '.30s',
+        'transition-timing-function': 'cubic-bezier(0.075, 0.82, 0.165, 1)'
+      }).css({
+        'opacity': '1',
+        'transform': 'translate(0px,0px)'
+      })
+    };
+  }
+  //Hide menu elements staggering
+  function mHideStagger() {
+    for (var i = 0; i < menuItems.length; i++) {
+      var item = menuItems.eq(i);
+      var delay = (i + 1) / 10;
+      item.css({
+        'transition-delay': delay + "s",
+        'transition-duration': '.30s',
+        'transition-timing-function': 'cubic-bezier(0.075, 0.82, 0.165, 1)'
+      }).css({
+        'opacity': '0',
+        'transform': 'translate(0px,-15px)'
+      })
+    };
+  }
+  //Events handling
+  $('.m-ham').click(function () {
+    if ($(this).hasClass('m-open')) {
+      lockBody(mobMenu);
+      $(this).addClass('m-close').removeClass('m-open')
+      mobMenu.css('display', 'block')
+      setTimeout(() => {
+        mobMenu.css('opacity', '1')
+        setTimeout(() => {
+          mShowStagger()
+        }, 160);
+      }, 10);
+    } else {
+      unlockBody(mobMenu);
+      $(this).removeClass('m-close').addClass('m-open')
+      mHideStagger()
+      setTimeout(() => {
+        mobMenu.css('opacity', '0')
+        setTimeout(() => {
+          mobMenu.css('display', 'none')
+        }, 300);
+      }, 400);
     }
-    //Hide menu elements staggering
-    function mHideStagger() {
-        for (var i = 0; i < menuItems.length; i++) {
-            var item = menuItems.eq(i);
-            var delay = (i + 1) / 10;
-            item.css({
-                'transition-delay': delay + "s",
-                'transition-duration': '.30s',
-                'transition-timing-function': 'cubic-bezier(0.075, 0.82, 0.165, 1)'
-            }).css({
-                'opacity': '0',
-                'transform': 'translate(0px,-15px)'
-            })
-        };
-    }
-    //Events handling
-    $('.m-ham').click(function () {
-        if ($(this).hasClass('m-open')) {
-            lockBody(mobMenu);
-            $(this).addClass('m-close').removeClass('m-open')
-            mobMenu.css('display', 'block')
-            setTimeout(() => {
-                mobMenu.css('opacity', '1')
-                setTimeout(() => {
-                    mShowStagger()
-                }, 160);
-            }, 10);
-        } else {
-            unlockBody(mobMenu);
-            $(this).removeClass('m-close').addClass('m-open')
-            mHideStagger()
-            setTimeout(() => {
-                mobMenu.css('opacity', '0')
-                setTimeout(() => {
-                    mobMenu.css('display', 'none')
-                }, 300);
-            }, 400);
-        }
-    })
+  })
 })
 
 //.. Modals
 $(document).ready(function () {
 
-    let modal = $('.modal')
-    let modalBlock = $('.modal__container')
-    let modalVerify = $('.modal__container.verify')
-    let modalTerms = $('.modal__container.terms')
-    let subModal = $('.modal__sub')
-    let subTerms = $('.modal__sub.terms')
-    let subPrivacy = $('.modal__sub.privacy')
+  let modal = $('.modal')
+  let modalBlock = $('.modal__container')
+  let modalVerify = $('.modal__container.verify')
+  let modalTerms = $('.modal__container.terms')
+  let subModal = $('.modal__sub')
+  let subTerms = $('.modal__sub.terms')
+  let subPrivacy = $('.modal__sub.privacy')
 
-    //Initial states
-    modalBlock.addClass('is-hidden')
-    modalBlock.css(cssDisplayNone)
-    modal.addClass('is-hidden')
-    
-    //Modal - Verification
-    function showVerify() {
-        modalVerify.css(cssDisplayFlex)
-        setTimeout(() => {
-            modalVerify.removeClass('is-hidden')
-        }, 10);
-    }
-    //Modal - Terms
-    function showTerms() {
-        modalTerms.css(cssDisplayBlock)
-        setTimeout(() => {
-            modalTerms.removeClass('is-hidden')
-        }, 10);
-    }
-    //Modal - Terms - Terms & Conditions
-    function showSubTerms() {
-        subTerms.css(cssDisplayBlock)
-    }
-    //Modal - Terms - Privacy Policy
-    function showSubPrivacy() {
-        subPrivacy.css(cssDisplayBlock)
-    }
-    //Modal - Terms - Hide
-    function hideSubModal() {
-        subModal.css(cssDisplayNone)
-    }
+  //Initial states
+  modalBlock.addClass('is-hidden')
+  modalBlock.css(cssDisplayNone)
+  modal.addClass('is-hidden')
 
-    //Modals Events handling
-    //Modal - Sign In - Open
-    // $('.open_sign-in').click(function () {
-    //     showSignIn();
-    // })
-    // //Modal - Sign Up - Open
-    // $('.open_sign-up').click(function () {
-    //     showSignUp();
-    // })
-    //Modal - Terms & Conditions - Open
-    $('.open_terms').click(function () {
-        hideSubModal()
-        showSubTerms()
-        showModal()
-        setTimeout(() => {
-            showTerms()
-        }, 220);
-    })
-    //Modal - Privacy Policy - Open
-    $('.open_privacy').click(function () {
-        hideSubModal()
-        showSubPrivacy()
-        showModal()
-        setTimeout(() => {
-            showTerms()
-        }, 220);
-    })
-    //Modal - Switch - To Register
-    $('.modal-switch.to-register').click(function () {
-        hideModal()
-        setTimeout(() => {
-            showSignUp()
-        }, 260);
-    })
-    //Modal - Switch - To Login
-    $('.modal-switch.to-login').click(function () {
-        hideModal()
-        setTimeout(() => {
-            showSignIn()
-        }, 260);
-    })
-    //Modal - Switch - To Verification
-    $('.to-verify').click(function () {
-        hideModal()
-        setTimeout(() => {
-            showVerify()
-        }, 260);
-    })
-    //Modal - Close
-    $('.modal-close, .modal_overlay').click(function () {
-        hideModal()
-        setTimeout(() => {
-            modal.addClass('is-hidden')
-            setTimeout(() => {
-                modal.css(cssDisplayNone)
-            }, 230);
-        }, 260);
-    })
+  //Modal - Verification
+  function showVerify() {
+    modalVerify.css(cssDisplayFlex)
+    setTimeout(() => {
+      modalVerify.removeClass('is-hidden')
+    }, 10);
+  }
+  //Modal - Terms
+  function showTerms() {
+    modalTerms.css(cssDisplayBlock)
+    setTimeout(() => {
+      modalTerms.removeClass('is-hidden')
+    }, 10);
+  }
+  //Modal - Terms - Terms & Conditions
+  function showSubTerms() {
+    subTerms.css(cssDisplayBlock)
+  }
+  //Modal - Terms - Privacy Policy
+  function showSubPrivacy() {
+    subPrivacy.css(cssDisplayBlock)
+  }
+  //Modal - Terms - Hide
+  function hideSubModal() {
+    subModal.css(cssDisplayNone)
+  }
+
+  //Modals Events handling
+  //Modal - Sign In - Open
+  // $('.open_sign-in').click(function () {
+  //     showSignIn();
+  // })
+  // //Modal - Sign Up - Open
+  // $('.open_sign-up').click(function () {
+  //     showSignUp();
+  // })
+  //Modal - Terms & Conditions - Open
+  $('.open_terms').click(function () {
+    hideSubModal()
+    showSubTerms()
+    showModal()
+    setTimeout(() => {
+      showTerms()
+    }, 220);
+  })
+  //Modal - Privacy Policy - Open
+  $('.open_privacy').click(function () {
+    hideSubModal()
+    showSubPrivacy()
+    showModal()
+    setTimeout(() => {
+      showTerms()
+    }, 220);
+  })
+  //Modal - Switch - To Register
+  $('.modal-switch.to-register').click(function () {
+    hideModal()
+    setTimeout(() => {
+      showSignUp()
+    }, 260);
+  })
+  //Modal - Switch - To Login
+  $('.modal-switch.to-login').click(function () {
+    hideModal()
+    setTimeout(() => {
+      showSignIn()
+    }, 260);
+  })
+  //Modal - Switch - To Verification
+  $('.to-verify').click(function () {
+    hideModal()
+    setTimeout(() => {
+      showVerify()
+    }, 260);
+  })
+  //Modal - Close
+  $('.modal-close, .modal_overlay').click(function () {
+    hideModal()
+    setTimeout(() => {
+      modal.addClass('is-hidden')
+      setTimeout(() => {
+        modal.css(cssDisplayNone)
+      }, 230);
+    }, 260);
+  })
 })
 
 // //.. Header search
@@ -246,90 +246,90 @@ $(document).ready(function () {
 //.. Mobile artist navigation
 $(document).ready(function () {
 
-    let mobSwitch = $('.mob__switch-category')
+  let mobSwitch = $('.mob__switch-category')
 
-    function showMobSwitch() {
-        //lockBody('.mob-rs')
-        $('.mob-rs').css('display', 'flex')
-        setTimeout(() => {
-            $('.mob-rs').css('opacity', '1')
-        }, 20);
-        setTimeout(() => {
-            $('.mob-rs__wrap').addClass('is-visible')
-        }, 200);
-    }
-    //Events handling
-    $(document).delegate(".mob__switch-category", "click", function(event){ 
-        mobSwitch.removeClass('active')
-        $(this).addClass('active')
-        setTimeout(() => {
-            closeMobSwitch()
-        }, 200);
-    });
-    $('.mob-rs__open').click(function () {
-        showMobSwitch()
-    })
-})
-function closeMobSwitch() {
-    //unlockBody('.mob-rs');
-    $('.mob-rs').css('display', 'none')
+  function showMobSwitch() {
+    //lockBody('.mob-rs')
+    $('.mob-rs').css('display', 'flex')
     setTimeout(() => {
-        $('.mob-rs').css('opacity', '0')
+      $('.mob-rs').css('opacity', '1')
     }, 20);
     setTimeout(() => {
-        $('.mob-rs__wrap').removeClass('is-visible')
+      $('.mob-rs__wrap').addClass('is-visible')
     }, 200);
+  }
+  //Events handling
+  $(document).delegate(".mob__switch-category", "click", function (event) {
+    mobSwitch.removeClass('active')
+    $(this).addClass('active')
+    setTimeout(() => {
+      closeMobSwitch()
+    }, 200);
+  });
+  $('.mob-rs__open').click(function () {
+    showMobSwitch()
+  })
+})
+function closeMobSwitch() {
+  //unlockBody('.mob-rs');
+  $('.mob-rs').css('display', 'none')
+  setTimeout(() => {
+    $('.mob-rs').css('opacity', '0')
+  }, 20);
+  setTimeout(() => {
+    $('.mob-rs__wrap').removeClass('is-visible')
+  }, 200);
 }
 //.. Navigation
 $(document).ready(function () {
 
-    //Header links switch
-    $('.link_under').click(function () {
-        $('.link_under').removeClass('active')
-        $(this).addClass('active')
-    })
+  //Header links switch
+  $('.link_under').click(function () {
+    $('.link_under').removeClass('active')
+    $(this).addClass('active')
+  })
 
-    //.. Artist navigation
-    let btnTab = $(".btn-tab")
-    let btnTabMob = $('.mob__switch-category')
-    let showVideos = $('.show-videos')
-    let showAlbums = $('.show-albums')
-    let showInterviews = $('.show-interviews')
-    let showAudios = $('.show-audios')
-    let showDisco = $('.show-disco')
-    let showSimilar = $('.show-similar')
-    let resultsBlock = $('.rs-content')
+  //.. Artist navigation
+  let btnTab = $(".btn-tab")
+  let btnTabMob = $('.mob__switch-category')
+  let showVideos = $('.show-videos')
+  let showAlbums = $('.show-albums')
+  let showInterviews = $('.show-interviews')
+  let showAudios = $('.show-audios')
+  let showDisco = $('.show-disco')
+  let showSimilar = $('.show-similar')
+  let resultsBlock = $('.rs-content')
 
-    //Events handling
-    // $('.btn-tab, .mob__switch-category').click(function () {
-    //     resultsBlock.css(cssDisplayNone)
-    //     btnTab.removeClass('active')
-    //     $(this).addClass('active')
-    // })
-    // //Show Music Videos
-    // showVideos.click(function () {
-    //     $('.rs-content.music-videos').css(cssDisplayBlock)
-    // })
-    // //Show Albums
-    // showAlbums.click(function () {
-    //     $('.rs-content.albums').css(cssDisplayBlock)
-    // })
-    // //Show Interviews
-    // showInterviews.click(function () {
-    //     $('.rs-content.interviews').css(cssDisplayBlock)
-    // })
-    // //Show Audios
-    // showAudios.click(function () {
-    //     $('.rs-content.audios').css(cssDisplayBlock)
-    // })
-    // //Show Discography
-    // showDisco.click(function () {
-    //     $('.rs-content.disco').css(cssDisplayBlock)
-    // })
-    // //Show Similar Artists
-    // showSimilar.click(function () {
-    //     $('.rs-content.similar').css(cssDisplayBlock)
-    // })
+  //Events handling
+  // $('.btn-tab, .mob__switch-category').click(function () {
+  //     resultsBlock.css(cssDisplayNone)
+  //     btnTab.removeClass('active')
+  //     $(this).addClass('active')
+  // })
+  // //Show Music Videos
+  // showVideos.click(function () {
+  //     $('.rs-content.music-videos').css(cssDisplayBlock)
+  // })
+  // //Show Albums
+  // showAlbums.click(function () {
+  //     $('.rs-content.albums').css(cssDisplayBlock)
+  // })
+  // //Show Interviews
+  // showInterviews.click(function () {
+  //     $('.rs-content.interviews').css(cssDisplayBlock)
+  // })
+  // //Show Audios
+  // showAudios.click(function () {
+  //     $('.rs-content.audios').css(cssDisplayBlock)
+  // })
+  // //Show Discography
+  // showDisco.click(function () {
+  //     $('.rs-content.disco').css(cssDisplayBlock)
+  // })
+  // //Show Similar Artists
+  // showSimilar.click(function () {
+  //     $('.rs-content.similar').css(cssDisplayBlock)
+  // })
 })
 
 // //.. Page Filters
@@ -379,24 +379,24 @@ $(document).ready(function () {
 //.. Logged status header interactions
 
 function showHeaderModal(container) {
-    $(container).children('.header__modal').css({ 'display': 'block' })
-    setTimeout(() => {
-        $(container).children('.header__modal').css({
-            'opacity': '1',
-            'transform': 'translateY(0px)'
-        })
-    }, 10);
-    return false
+  $(container).children('.header__modal').css({ 'display': 'block' })
+  setTimeout(() => {
+    $(container).children('.header__modal').css({
+      'opacity': '1',
+      'transform': 'translateY(0px)'
+    })
+  }, 10);
+  return false
 }
 function hideHeaderModal(container) {
-    $(container).children('.header__modal').css({
-        'opacity': '0',
-        'transform': 'translateY(-18px)'
-    });
-    setTimeout(() => {
-        $(container).children('.header__modal').css({ 'display': 'none' });
-    }, 170);
-    return false
+  $(container).children('.header__modal').css({
+    'opacity': '0',
+    'transform': 'translateY(-18px)'
+  });
+  setTimeout(() => {
+    $(container).children('.header__modal').css({ 'display': 'none' });
+  }, 170);
+  return false
 }
 
 // $(document).ready(function () {
@@ -413,9 +413,9 @@ function hideHeaderModal(container) {
 //     // })
 
 //     //Functions
-    
 
-    
+
+
 
 //     function dimSiblings() {
 //         $(this).siblings().css({ 'opacity': '.5' })
@@ -441,3 +441,51 @@ function hideHeaderModal(container) {
 //         hideHeaderModal.call(this)
 //     })
 // })
+
+class staticLoaderOverlay {
+  constructor(parent = $('body'), changePosition) {
+    this._parent = parent
+    this.extend = {
+      mainClass: 'static-loader-overlay'
+    }
+  }
+  isExist() {
+    if (this.getDOM().length !== 0) { return true }
+    else { return false }
+  }
+  create() {
+    if (!this.isExist()) {
+      const el = $('<div/>', { class: this.extend.mainClass, css: { opacity: 0 } })
+      this._parent.append(el)
+      setTimeout(() => { Object.assign(el[0].style, { opacity: 1 }) }, 1);
+    }
+  }
+  destroy() {
+    if (this.isExist()) {
+      const el = this.getDOM()
+      Object.assign(el[0].style, { opacity: 0 })
+      setTimeout(() => { el.remove() }, (parseFloat(window.getComputedStyle(el[0]).transitionDuration) * 1000));
+    }
+  }
+  getDOM() {
+    return $(this._parent.find(`.${this.extend.mainClass}`))
+  }
+}
+
+$(document).on('click', '.pts-holder', () => {
+  if (document.readyState === 'ready' || document.readyState === 'complete') {
+    let arr = $.makeArray($('.page-artist__step-buttons, .page-artist-head__main-buttons, .page-artist-head__also-like, .page-artist-head__sub-info-typo'))
+    if (arr.length !== 0) {
+      const pageOverlay = new staticLoaderOverlay()
+      pageOverlay.create(); let overlayEl = pageOverlay.getDOM()
+      setTimeout(() => {
+        $.each(arr, function (i) { arr[i].remove() })
+        setTimeout(() => {
+          pageOverlay.destroy()
+        }, 250);
+      }, (parseFloat(window.getComputedStyle(overlayEl[0]).transitionDuration) * 1000));
+    }
+  } else {
+    return false
+  }
+})

@@ -33,6 +33,8 @@
   -ms-transform: none;
   transform: none;
   font-size: 13px;
+  cursor: pointer;
+  transition: all 200ms ease;
 }
 
 .pts-holder__lottie-wrap {

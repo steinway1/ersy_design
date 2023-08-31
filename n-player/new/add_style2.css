@@ -3251,6 +3251,7 @@ body.player_visible:not(.player_collapsed) .main {
   }
 
   .page-artist-head__main {
+    width: 100%;
     margin-top: 20px;
     margin-left: 0;
   }
